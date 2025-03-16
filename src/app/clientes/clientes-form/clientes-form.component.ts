@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
 import { ClientesService } from 'src/app/clientes.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clientes-form',
@@ -24,26 +25,28 @@ export class ClientesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params = this.activetedRoute.params;
-
-    this.id = params.value.id;
-
-
-    this.service.getClienteByID(this.id)
-      .subscribe(resposta => this.cliente = resposta)
+    let params: Observable<Params> = this.activetedRoute.params;
+    params.subscribe(urlParams => {
+      this.id = urlParams['id'];
+      this.service.getClienteByID(this.id)
+      .subscribe(
+        resposta => this.cliente = resposta)
+    })
   }
 
   onSubmit() {
     if (this.id) {
       this.service.Atualizar(this.cliente)
       .subscribe(resposta => {
-        console.log('cliente atualizado com sucesso.')
+        alert('cliente atualizado com sucesso.')
+        this.voltar();
       })
       
 
     } else {
       this.service.salvar(this.cliente)
         .subscribe(resposta => {
+          this.voltar();
           if (resposta == null) {
             this.success = false;
             this.mensagem = true;
