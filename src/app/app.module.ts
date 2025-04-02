@@ -10,11 +10,14 @@ import { ClientesModule } from './clientes/clientes.module';
 import { ClientesService } from './clientes.service';
 import { ServicoModule } from './servico/servico.module';
 import { ServicoService } from './servico.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { ServicoService } from './servico.service';
     AppRoutingModule,
     TemplateModule,
     ClientesModule,
-    ServicoModule
+    ServicoModule,
+    FormsModule
   ],
   providers: [
     ClientesService,
