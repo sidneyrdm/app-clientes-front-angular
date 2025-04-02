@@ -21,7 +21,7 @@ export class ClientesListComponent implements OnInit {
   }
 
   cadastrarCliente() {
-    this.router.navigate(['/clientes-form']);
+    this.router.navigate(['/clientes/form']);
   }
 
   preDelete(cliente: Cliente) {

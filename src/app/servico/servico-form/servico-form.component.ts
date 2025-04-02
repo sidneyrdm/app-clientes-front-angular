@@ -45,6 +45,6 @@ export class ServicoFormComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/servico-list']);
+    this.router.navigate(['/servicos/list']);
   }
 }
