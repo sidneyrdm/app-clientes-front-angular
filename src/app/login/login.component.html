@@ -7,12 +7,12 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header">
                                 <h3 class="text-center font-weight-light my-4 ">
-                                    Login
+                                    {{ cadastrando? 'Cadastro de novo usuário' : 'Login' }}
                                 </h3>
                             </div>
                             
                             <div class="card-body">
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger" *ngIf="loginError">
                                     Login e/ou Senha Incorreto(s)
                                 </div>
 
@@ -35,9 +35,19 @@
                                 </div>
 
                                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <button class="btn btn-primary" type="submit">Entrar</button>
+                                    <button class="btn btn-primary" type="submit" *ngIf="!cadastrando">Entrar</button>
+                                    <button class="btn btn-success" type="button" *ngIf="cadastrando">Cadastar</button>
+                                    <button (click)="cancelaCadastro()" class="btn btn-danger" type="button" *ngIf="cadastrando">Cancelar</button>
                                 </div>
                             </form>
+                            </div>
+
+                            <div class="card-footer text-center">
+                                <div class="small">
+                                    <a (click)="preCadastro($event)" href="#">
+                                        Não possui usuário? Cadastre-se!
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
